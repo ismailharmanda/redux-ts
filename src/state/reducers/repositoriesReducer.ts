@@ -20,14 +20,17 @@ interface SearchRepositoriesErrorAction {
 
 const reducer = (
   state: RepositoriesState,
-  action: Action
+  action:
+    | SearchRepositoriesAction
+    | SearchRepositoriesSuccessAction
+    | SearchRepositoriesErrorAction
 ): RepositoriesState => {
   switch (action.type) {
-    case "serch_repositories":
+    case "search_repositories":
       return { loading: true, error: null, data: [] };
-    case "serch_repositories_success":
+    case "search_repositories_success":
       return { loading: false, error: null, data: action.payload };
-    case "serch_repositories_error":
+    case "search_repositories_error":
       return { loading: false, error: action.payload, data: [] };
 
     default:
